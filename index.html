@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PELICO MANIA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600;700&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- ================================================================== -->
+    <!-- SEAMLESS GAME TITLE OVERLAY (NO DARK MODAL BOXES!)                 -->
+    <!-- ================================================================== -->
+    <section id="welcomeScreen" class="title-overlay">
+      <!-- Top Illustrated Game Logo -->
+      <div class="title-logo-group">
+        <div class="title-wooden-sign">ELASTO MANIA TRIBUTE</div>
+        <h1 class="game-title">
+          <span class="word-pelico">PELICO</span>
+          <span class="word-mania">MANIA</span>
+        </h1>
+      </div>
+
+      <!-- Bottom Floating Stage Selector & Play CTA (No Box Container!) -->
+      <div class="title-controls-group">
+        <div class="stage-selector">
+          <button id="btnPrevStage" class="chunky-arrow-btn" aria-label="Previous Stage">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M15.5 4.5L7.5 12l8 7.5V4.5z"/></svg>
+          </button>
+
+          <button id="btnOpenCoursesFromPicker" class="stage-badge-btn" title="Click to view all 6 stages">
+            <span class="stage-num-text" id="welcomeStageNum">STAGE 1 OF 6</span>
+            <span class="stage-name-text" id="welcomeStageTitle">Pelican Pier &amp; Mountain Cove</span>
+          </button>
+
+          <button id="btnNextStage" class="chunky-arrow-btn" aria-label="Next Stage">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M8.5 4.5L16.5 12l-8 7.5V4.5z"/></svg>
+          </button>
+        </div>
+
+        <button id="btnStartGame" class="chunky-play-btn">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M6 4l15 8-15 8V4z"/></svg>
+          <span>PLAY</span>
+        </button>
+
+        <div class="title-key-prompt">
+          Press <kbd>W</kbd> / <kbd>↑</kbd> to Gas &bull; <kbd>A</kbd><kbd>D</kbd> Lean &amp; Flip &bull; <kbd>SHIFT</kbd> Wing Boost &bull; <kbd>E</kbd> Hop &bull; <kbd>SPACE</kbd> Turn
+        </div>
+      </div>
+    </section>
+
+    <!-- ================================================================== -->
+    <!-- IN-GAME ARCADE HUD (CHUNKY OUTLINED GAME BADGES)                   -->
+    <!-- ================================================================== -->
+    <header id="hud-top" class="hud-hidden">
+      <!-- Top-Left: Fish Counter & Stage Name -->
+      <div class="hud-left">
+        <div class="game-pill fish-pill" id="fishPill">
+          <svg class="gold-fish-svg" viewBox="0 0 32 20" width="26" height="17">
+            <path d="M7 10 L1 3 L4 10 L1 17 Z" fill="#ff8524" stroke="#182232" stroke-width="2" stroke-linejoin="round"/>
+            <ellipse cx="17" cy="10" rx="11" ry="7" fill="#ffe047" stroke="#182232" stroke-width="2.2"/>
+            <circle cx="22" cy="8" r="1.8" fill="#182232"/>
+          </svg>
+          <span id="fishCountDisplay" class="fish-count-text">0 / 7</span>
+          <div id="fishIconsRow" class="fish-pips-hidden"></div>
+        </div>
+
+        <button id="btnLevelSelect" class="game-pill stage-pill" title="Select Stage (L)">
+          <span id="levelNameDisplay">1. Pelican Pier</span>
+          <svg viewBox="0 0 20 20" width="14" height="14" fill="currentColor"><path d="M5 7l5 6 5-6H5z"/></svg>
+        </button>
+      </div>
+
+      <!-- Top-Right: Outlined Timer & Round Icon Buttons -->
+      <div class="hud-right">
+        <div class="game-pill timer-pill">
+          <span id="timerDisplay" class="timer-digits mono">00:00.00</span>
+          <span class="best-digits mono">BEST <b id="bestTimeDisplay">--:--</b></span>
+        </div>
+
+        <button id="btnRestartQuick" class="round-game-btn" title="Restart Stage (R)">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg>
+        </button>
+
+        <button id="btnHelmetMode" class="round-game-btn" title="Toggle Helmet Crash Mode (H)">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </button>
+
+        <button id="btnSoundToggle" class="round-game-btn active" title="Toggle Sound (M)">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+        </button>
+
+        <button id="btnMenuHome" class="round-game-btn" title="Title Screen (Esc)">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5L12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9.5z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Bottom-Left Arcade Speed & Boost Cluster -->
+    <div id="hud-telemetry" class="hud-hidden">
+      <div class="arcade-telemetry">
+        <div class="arcade-speed-box">
+          <span id="speedValue" class="arcade-speed-num mono">0</span>
+          <div class="arcade-speed-label">
+            <span>KM/H</span>
+            <b id="driveStateValue">COAST</b>
+          </div>
+        </div>
+
+        <div class="arcade-bars">
+          <div class="arcade-bar-row">
+            <div class="arcade-bar-header">
+              <span>MOMENTUM</span>
+              <b id="accelChainPct" class="mono">0%</b>
+            </div>
+            <div class="arcade-bar-shell">
+              <div id="momentumBar" class="arcade-bar-fill momentum-grad"></div>
+            </div>
+          </div>
+
+          <div class="arcade-bar-row">
+            <div class="arcade-bar-header">
+              <span>WING BOOST</span>
+              <b id="boostPct" class="mono">100%</b>
+            </div>
+            <div class="arcade-bar-shell">
+              <div id="boostBar" class="arcade-bar-fill boost-grad"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Touch Controls (Mobile / Tablet only) -->
+    <div id="touch-controls" class="hud-hidden">
+      <div class="touch-cluster">
+        <button class="touch-btn" data-action="leanLeft">⟲</button>
+        <button class="touch-btn" data-action="leanRight">⟳</button>
+        <button class="touch-btn" data-action="hop">HOP</button>
+      </div>
+      <div class="touch-cluster">
+        <button class="touch-btn" data-action="turn">TURN</button>
+        <button class="touch-btn brake-btn" data-action="brake">BRAKE</button>
+        <button class="touch-btn turbo-btn" data-action="boost">BOOST</button>
+        <button class="touch-btn gas-btn" data-action="throttle">GAS</button>
+      </div>
+    </div>
+
+    <!-- Stage Select Modal -->
+    <div id="levelModal" class="modal hidden">
+      <div class="game-modal-card">
+        <div class="modal-header">
+          <h2>SELECT STAGE</h2>
+          <button id="btnCloseLevels" class="chunky-close-btn">✕</button>
+        </div>
+        <div id="levelGrid" class="level-grid"></div>
+      </div>
+    </div>
+
+    <!-- Hidden elements kept for compatibility -->
+    <div id="hud-controls" class="hidden"></div>
+    <aside id="physicsDrawer" class="hidden">
+      <button id="btnClosePhysics"></button>
+      <button id="btnResetPhysics"></button>
+      <input type="range" id="sliderTorque" value="1.00" /><span id="valTorque"></span>
+      <input type="range" id="sliderTopSpeed" value="1.00" /><span id="valTopSpeed"></span>
+      <input type="range" id="sliderSpring" value="1.00" /><span id="valSpring"></span>
+      <input type="range" id="sliderRebound" value="1.10" /><span id="valRebound"></span>
+      <input type="range" id="sliderPitch" value="1.05" /><span id="valPitch"></span>
+      <input type="range" id="sliderGravity" value="1.00" /><span id="valGravity"></span>
+    </aside>
+
+    <!-- Center Stunt Callouts -->
+    <div id="stuntFeed"></div>
+
+    <!-- Crash / Stage Complete Banner -->
+    <div id="stateOverlay" class="state-overlay hidden">
+      <div class="finish-banner-card">
+        <div class="finish-ribbon" id="overlayBadge">STAGE COMPLETE</div>
+        <div id="overlayIcon" class="finish-icon-wrap"></div>
+        <h2 id="overlayTitle">COURSE CLEAR!</h2>
+        <p id="overlaySubtitle">All golden fish delivered to the pelican nest!</p>
+        <div class="finish-stats-row" id="overlayStats"></div>
+        <div class="finish-actions-row">
+          <button id="btnOverlayMenu" class="chunky-action-btn neutral">TITLE</button>
+          <button id="btnOverlayRetry" class="chunky-action-btn cyan">RETRY (R)</button>
+          <button id="btnOverlayNext" class="chunky-action-btn gold">NEXT STAGE →</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
