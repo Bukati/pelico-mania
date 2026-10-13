@@ -81,8 +81,8 @@
     motorTorqueRate: 18.0,       // smooth, controllable spin-up rate
     groundTraction: 19.0,        // governed tangential traction coupling
     maxHorizontalSpeed: 16.8,    // soft speed governor (~60 km/h max)
-    turboThrust: 5.6,            // gentle wing-flap boost (assist climbs & air glide)
-    turboLift: 4.4,              // upward wing-flap lift for higher jumps
+    turboThrust: 6.2,            // gentle wing-flap boost (assist climbs & air glide)
+    turboLift: 10.8,             // strong upward wing-flap lift for higher jumps & reaching decks!
     voltAngularAccel: 24.0,      // pitch authority (rad/s^2)
     voltSnapImpulse: 1.95,       // Elma-style alovolt snap when reversing lean
     maxAngularVel: 10.5,
@@ -290,12 +290,12 @@
       maxX: 226,
       fish: [
         [18, -1.2],
-        [44, -6.8],
-        [68, -13.2], // Upper boardwalk deck 1
-        [98, -3.5],
-        [132, -9.8],
-        [162, -15.2], // Upper boardwalk deck 2
-        [188, -8.5],
+        [44, -5.8],
+        [68, -7.8],  // Upper boardwalk deck 1 (easy jump off ramp or hop from below!)
+        [98, -2.5],
+        [124, -7.5],
+        [162, -9.2], // Upper boardwalk deck 2 (easy launch off ramp or hop from below!)
+        [190, -8.5],
       ],
       structures: [
         {
@@ -311,18 +311,18 @@
             [20, 1.5],
             [32, 2.2],
             [40, -1.5],
-            [46, -4.5],   // Kicker Ramp 1
-            [53, -0.5],
-            [64, -2.5],
-            [76, -2.5],
-            [88, 1.8],    // Valley 2
-            [100, 2.2],
+            [47, -4.6],   // Kicker Ramp 1 (launches right onto Deck 1!)
+            [55, -2.2],
+            [68, -2.8],
+            [80, -2.5],
+            [90, 1.5],    // Valley 2
+            [100, 1.8],
             [112, -1.8],
             [124, -5.8],  // Camelback Peak
-            [134, -2.2],
-            [144, 0.8],   // Valley 3
-            [154, -3.5],
-            [162, -5.5],
+            [133, -0.5],  // Run-up Valley 3
+            [143, -5.4],  // Kicker Ramp 2 (launches smoothly onto Deck 2!)
+            [154, -4.0],
+            [162, -4.5],  // Hill under Deck 2 (only 3.3m below Deck 2!)
             [174, -4.0],
             [186, -6.8],
             [198, -7.2],
@@ -333,22 +333,22 @@
             [227, -56.0], // Right Mountain Peak (right behind Goal Nest!)
           ], 10),
         },
-        // Floating upper wooden pier deck 1
+        // Floating upper wooden pier deck 1 (one-way pass-through platform!)
         {
           type: 'deck',
           points: catmullRomChain([
-            [54, -10.5],
-            [68, -11.6],
-            [82, -10.2],
+            [50, -5.8],
+            [68, -6.4],
+            [84, -5.6],
           ], 6),
         },
-        // Floating upper wooden pier deck 2
+        // Floating upper wooden pier deck 2 (one-way pass-through platform!)
         {
           type: 'deck',
           points: catmullRomChain([
-            [148, -12.6],
-            [162, -13.6],
-            [176, -12.2],
+            [145, -7.2],
+            [162, -7.8],
+            [178, -7.0],
           ], 6),
         },
       ],
@@ -365,11 +365,11 @@
       maxX: 250,
       fish: [
         [24, 2.2],
-        [50, -9.8],
+        [50, -8.2],
         [84, -2.5],
-        [114, -12.8],
+        [114, -9.8],
         [148, 1.5],
-        [178, -14.5],
+        [180, -11.8],
         [210, -9.5],
       ],
       structures: [
@@ -395,9 +395,9 @@
             [126, 0.5],
             [142, 4.8],   // Deep Canyon Bowl 3
             [156, 3.2],
-            [168, -3.8],
-            [176, -6.8],  // Dune Launch 3
-            [188, -2.0],
+            [168, -4.5],
+            [176, -6.5],  // Dune Launch 3
+            [188, -3.5],
             [202, -5.5],
             [218, -8.5],
             [235, -8.5],  // Goal Nest Terrace
@@ -410,9 +410,9 @@
         {
           type: 'deck',
           points: catmullRomChain([
-            [168, -12.5],
-            [180, -13.2],
-            [192, -12.0],
+            [168, -9.8],
+            [180, -10.4],
+            [192, -9.4],
           ], 6),
         },
       ],
@@ -431,11 +431,11 @@
       maxX: 232,
       fish: [
         [18, -1.8],
-        [38, -16.8], // Top of the 360 loop!
+        [38, -15.5], // Top of the 360 loop!
         [66, -3.8],
-        [88, -13.2], // Bridge 1
+        [88, -10.5], // Bridge 1
         [124, -4.5],
-        [162, -14.8], // Bridge 2
+        [162, -11.5], // Bridge 2
         [194, -7.5],
       ],
       structures: [
@@ -453,16 +453,16 @@
             [35, 1.0],
             [45, 1.0],
             [58, 0.5],
-            [68, -2.2],
-            [80, -2.2],
+            [68, -2.8],
+            [80, -3.5],
             [92, -5.8],
             [104, -5.5],
             [116, -1.0],  // Rhythm Valley
             [128, -3.8],
             [140, 0.5],
-            [152, -4.5],
+            [152, -4.8],
             [166, -6.2],
-            [180, -3.5],
+            [180, -4.2],
             [194, -6.2],
             [217, -6.2],  // Goal Terrace
             [221, -10.5],
@@ -479,18 +479,18 @@
         {
           type: 'deck',
           points: catmullRomChain([
-            [74, -11.0],
-            [88, -12.0],
-            [102, -10.6],
+            [74, -8.2],
+            [88, -9.0],
+            [102, -7.8],
           ], 6),
         },
         // Upper bridge deck 2
         {
           type: 'deck',
           points: catmullRomChain([
-            [148, -12.5],
-            [162, -13.5],
-            [176, -12.0],
+            [148, -9.2],
+            [162, -10.0],
+            [176, -8.8],
           ], 6),
         },
       ],
@@ -929,26 +929,26 @@
           return bestY;
         };
 
-        // Add 2 elevated wooden boardwalk decks along the course
+        // Add 2 elevated wooden boardwalk decks along the course (accessible one-way platforms!)
         const deck1X = Math.round(goalX * 0.34);
-        const deck1Y = sampleY(deck1X) - 7.8;
+        const deck1Y = sampleY(deck1X) - 3.8;
         structures.push({
           type: 'deck',
           points: catmullRomChain([
-            [deck1X - 13, deck1Y + 0.5],
-            [deck1X, deck1Y - 0.6],
-            [deck1X + 13, deck1Y + 0.5],
+            [deck1X - 14, deck1Y + 0.4],
+            [deck1X, deck1Y - 0.4],
+            [deck1X + 14, deck1Y + 0.4],
           ], 5),
         });
 
         const deck2X = Math.round(goalX * 0.68);
-        const deck2Y = sampleY(deck2X) - 8.2;
+        const deck2Y = sampleY(deck2X) - 3.9;
         structures.push({
           type: 'deck',
           points: catmullRomChain([
-            [deck2X - 13, deck2Y + 0.5],
-            [deck2X, deck2Y - 0.6],
-            [deck2X + 13, deck2Y + 0.5],
+            [deck2X - 14, deck2Y + 0.4],
+            [deck2X, deck2Y - 0.4],
+            [deck2X + 14, deck2Y + 0.4],
           ], 5),
         });
 
@@ -956,11 +956,11 @@
         for (let k = 1; k <= 7; k++) {
           const fx = Math.round((goalX - 16) * (k / 7.4));
           if (k === 3) {
-            fish.push([deck1X, deck1Y - 2.0]);
+            fish.push([deck1X, deck1Y - 1.5]);
           } else if (k === 5) {
-            fish.push([deck2X, deck2Y - 2.0]);
+            fish.push([deck2X, deck2Y - 1.5]);
           } else {
-            const fy = sampleY(fx) - (2.4 + (k % 2) * 2.2);
+            const fy = sampleY(fx) - (2.0 + (k % 2) * 1.5);
             fish.push([fx, fy]);
           }
         }
@@ -1049,7 +1049,7 @@
   let fishItems = [];
   let fishCollected = 0;
 
-  let headCrashEnabled = true;
+  let headCrashEnabled = false; // Default to Protective Bounce Helmet (toggle H for Hardcore 1-hit KO!)
   let ghostEnabled = true;
   let bestTimes = {};
   let bestGhosts = {};
@@ -1332,17 +1332,17 @@
         ? bike.frontWheel.contactNormalY
         : -Math.cos(bike.angle);
 
-      // Momentum-scaled bunny hop: higher Acceleration Momentum gives a higher vertical pop
-      // without needing excessive horizontal speed!
-      const momentumBonus = 1.0 + bike.momentumChain * 0.42;
-      const hopImpulse = 6.6 * tuning.rebound * momentumBonus;
+      // Momentum-scaled bunny hop: gives a crisp ~5m vertical jump so you can hop right up
+      // onto any overhead wooden boardwalk deck!
+      const momentumBonus = 1.0 + bike.momentumChain * 0.35;
+      const hopImpulse = 10.2 * tuning.rebound * momentumBonus;
 
-      bike.vx += nx * hopImpulse * 0.65;
-      bike.vy += ny * hopImpulse;
-      bike.rearWheel.vx += nx * hopImpulse * 0.55;
-      bike.rearWheel.vy += ny * hopImpulse * 0.85;
-      bike.frontWheel.vx += nx * hopImpulse * 0.65;
-      bike.frontWheel.vy += ny * hopImpulse * 0.95;
+      bike.vx += nx * hopImpulse * 0.45;
+      bike.vy = Math.min(bike.vy, 0) + ny * hopImpulse;
+      bike.rearWheel.vx += nx * hopImpulse * 0.45;
+      bike.rearWheel.vy = Math.min(bike.rearWheel.vy, 0) + ny * hopImpulse * 0.95;
+      bike.frontWheel.vx += nx * hopImpulse * 0.45;
+      bike.frontWheel.vy = Math.min(bike.frontWheel.vy, 0) + ny * hopImpulse * 0.98;
 
       bike.hopCooldown = 0.4;
       bike.beakOpen = 0.6;
@@ -1626,10 +1626,16 @@
       chassisFy += uy * bike.dir * forwardThrust - upwardLift;
     }
 
-    // Rider Lean / Volt Torque
+    // Rider Lean / Volt Torque (plus natural upright balance assist when not holding A/D)
     if (leanDir !== 0) {
       chassisTorque +=
         leanDir * BASE_PARAMS.voltAngularAccel * tuning.pitch * BASE_PARAMS.chassisInertia;
+    } else {
+      // Gentle upright stabilization toward nearest upright multiple of 2*PI so riding off
+      // wooden bridges or landing jumps never unexpectedly nose-dives!
+      const nearestUpright = Math.round(bike.angle / (Math.PI * 2)) * (Math.PI * 2);
+      const angleErr = bike.angle - nearestUpright;
+      chassisTorque += (-angleErr * 7.5 - bike.omega * 2.2) * BASE_PARAMS.chassisInertia;
     }
 
     // Solve Elastic Suspension for Rear and Front wheels
@@ -1778,6 +1784,31 @@
       const distSq = dx * dx + dy * dy;
 
       if (distSq < r * r && distSq > 1e-9) {
+        // Wooden boardwalk decks ('deck') are ONE-WAY pass-through platforms!
+        // Only collide when the wheel center is on the TOP side of the deck and not moving upward through it.
+        if (seg.structureType === 'deck') {
+          const signedAbove = dx * seg.nx + dy * seg.ny;
+          const vnAgainstDeck = w.vx * seg.nx + w.vy * seg.ny;
+          if (signedAbove < 0 || vnAgainstDeck > 0.8) {
+            continue;
+          }
+          const penetration = r - signedAbove;
+          if (penetration <= 0) continue;
+
+          w.x += seg.nx * penetration;
+          w.y += seg.ny * penetration;
+          w.grounded = true;
+
+          if (penetration > bestPenetration) {
+            bestPenetration = penetration;
+            bestNx = seg.nx;
+            bestNy = seg.ny;
+            contactX = closestX;
+            contactY = closestY;
+          }
+          continue;
+        }
+
         const dist = Math.sqrt(distSq);
         const nx = dx / dist;
         const ny = dy / dist;
@@ -1885,15 +1916,17 @@
       }
     }
 
-    // 2. Elasto Mania Head Collision with Terrain (if Head Crash is enabled)
-    if (!headCrashEnabled) return;
-
+    // 2. Pelican Helmet Terrain Contact
     const hr = BASE_PARAMS.headRadius;
     const hx = bike.head.x;
     const hy = bike.head.y;
+    const upX = Math.sin(bike.angle);
+    const upY = -Math.cos(bike.angle);
 
     for (let i = 0; i < levelSegments.length; i++) {
       const seg = levelSegments[i];
+      // Wooden boardwalk decks are pass-through platforms — never block or bonk the helmet!
+      if (seg.structureType === 'deck') continue;
       if (hx < seg.minX || hx > seg.maxX || hy < seg.minY || hy > seg.maxY) continue;
 
       const apx = hx - seg.ax;
@@ -1902,10 +1935,34 @@
       const cx = seg.ax + seg.tx * proj;
       const cy = seg.ay + seg.ty * proj;
 
-      const distSq = (hx - cx) * (hx - cx) + (hy - cy) * (hy - cy);
-      if (distSq < hr * hr) {
-        triggerCrash('BONK! PELICAN HELMET HIT TERRAIN!');
-        return;
+      const dx = hx - cx;
+      const dy = hy - cy;
+      const distSq = dx * dx + dy * dy;
+      if (distSq < hr * hr && distSq > 1e-9) {
+        const uprightDot = upX * seg.nx + upY * seg.ny;
+        if (headCrashEnabled && uprightDot < -0.35) {
+          triggerCrash('BONK! PELICAN HELMET HIT TERRAIN!');
+          return;
+        } else {
+          // Protective Motocross Helmet Bounce & Auto-Righting Recovery!
+          const dist = Math.sqrt(distSq);
+          const nx = dx / dist;
+          const ny = dy / dist;
+          const push = hr - dist;
+          bike.x += nx * push * 1.1;
+          bike.y += ny * push * 1.1;
+
+          const vn = bike.vx * nx + bike.vy * ny;
+          if (vn < 0) {
+            bike.vx -= nx * vn * 1.35;
+            bike.vy -= ny * vn * 1.35;
+          }
+          // Gently right the bike back toward upright so the player doesn't get stuck inverted
+          if (uprightDot < 0) {
+            bike.omega += (bike.angle > 0 ? -1 : 1) * 0.45;
+            bike.angle *= 0.85;
+          }
+        }
       }
     }
   }
@@ -1918,7 +1975,7 @@
       const dFront = Math.hypot(bike.frontWheel.x - f.x, bike.frontWheel.y - f.y);
       const dHead = Math.hypot(bike.head.x - f.x, bike.head.y - f.y);
 
-      if (dChassis < 1.65 || dRear < 1.45 || dFront < 1.45 || dHead < 1.55) {
+      if (dChassis < 2.1 || dRear < 1.85 || dFront < 1.85 || dHead < 1.95) {
         f.collected = true;
         fishCollected++;
         bike.pouchFishCount = fishCollected;
